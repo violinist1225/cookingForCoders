@@ -9,7 +9,7 @@ export default function NavBar(props){
                 <Link to="/profile" > Profile </Link>
                 <Link style={{marginLeft: "15px"}} to="/public" > Public </Link>
             </div>
-                <button onClick={handleLogout}>Logout</button>
+                <button style={{marginRight: "100px"}} onClick={handleLogout}>Logout</button>
             </div>
     </div>
     )

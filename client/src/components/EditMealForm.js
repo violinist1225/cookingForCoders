@@ -35,7 +35,7 @@ export default function EditMealForm(props) {
         <div>
           <label className="desc" id="title1" htmlFor="Field1">TIME TO PREPARE MEAL IN MINUTES</label>
           <div>
-            <input name="timeToPrepareInMinutes" value={editFormState && editFormState.timeToPrepareInMinutes} onChange={editMealHandleChange} type="text" className="field text fn" defaultValue size={8} tabIndex={1} />
+            <input name="timeToPrepareInMinutes" value={editFormState && editFormState.timeToPrepareInMinutes} onChange={editMealHandleChange} type="text" className="field text fn"  size={8} tabIndex={1} />
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export default function EditMealForm(props) {
         <div>
           <label className="desc" id="title1" htmlFor="Field1">HOW LONG WILL MEAL LAST IN DAYS?</label>
           <div>
-            <input name="timeToCookInMinutes" value={editFormState && editFormState.timeToCookInMinutes} onChange={editMealHandleChange} type="text" className="field text fn" defaultValue size={8} tabIndex={1} />
+            <input name="timeToCookInMinutes" value={editFormState && editFormState.timeToCookInMinutes} onChange={editMealHandleChange} type="text" className="field text fn"  size={8} tabIndex={1} />
           </div>
 
         </div>
@@ -56,7 +56,7 @@ export default function EditMealForm(props) {
           <div>
           <label className="desc" id="title1" htmlFor="Field1">TIME TO COOK MEAL IN MINUTES</label>
           <div>
-            <input name="durationOfMealPerCoderInDays" value={editFormState && editFormState.durationOfMealPerCoderInDays} onChange={editMealHandleChange} type="text" className="field text fn" defaultValue size={8} tabIndex={1} />
+            <input name="durationOfMealPerCoderInDays" value={editFormState && editFormState.durationOfMealPerCoderInDays} onChange={editMealHandleChange} type="text" className="field text fn"  size={8} tabIndex={1} />
           </div>
             </div>
 

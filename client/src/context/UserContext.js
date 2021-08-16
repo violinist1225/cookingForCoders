@@ -79,7 +79,8 @@ function UserContextProvider(props) {
         .catch(err => console.log(err))
      }
 
-    const  editMeal = (e, mealId) =>{  
+    const  editMeal = (e, mealId) =>{ 
+        console.log(editFormState, mealId) 
         e.preventDefault()
         userAxios.put(`/api/meals/${mealId}`, {...editFormState, userId: userState.user._id })
         .then(res => getMeals())

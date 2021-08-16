@@ -59,6 +59,7 @@ const handleLogin = (e) => {
        setUserState(prevState => {
            return {
                ...prevState,
+               //add user: res.data.user for the same reason you are setting token: res.data.token
                token: res.data.token
            }
        })
@@ -84,7 +85,7 @@ const handleLogout = (e) => {
     setUserState({
         user: {},
         token: "",
-        issues:[]
+        meals:[]
 
     })
 }

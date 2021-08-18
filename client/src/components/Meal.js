@@ -11,7 +11,7 @@ export default function Meal({meal, username, comments, onProfilePage}){
     const [hideEditForm, setHideEditForm ] = useState(true)
     const {likeMeal, dislikeMeal, deleteMeal, user} = useContext(UserContext)
 
-    const renderedComments = comments && comments.map(comment => <Comment mealId={meal._id} {...comment} />)
+    const renderedComments = comments && comments.map(comment => <Comment meal={meal} mealId={meal._id} {...comment} />)
     
     return (
         <React.Fragment> 
@@ -60,7 +60,7 @@ export default function Meal({meal, username, comments, onProfilePage}){
         </div></div> 
         <div>
             
-           {onProfilePage? null : <button style={{display: "block"}} onClick={()=> setCommentToggle(prev => !prev)}>{commentToggle?"Hide":"Show"} Comment</button>}
+           {onProfilePage? null : <button style={{display: "block"}} onClick={()=> setCommentToggle(prev => !prev)}>{commentToggle?"Hide":"Show"} Comments</button>}
             {user}
             {commentToggle?renderedComments:null}
             {onProfilePage?

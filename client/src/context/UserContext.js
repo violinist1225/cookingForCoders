@@ -30,12 +30,14 @@ function UserContextProvider(props) {
         token: localStorage.getItem("token") || "",
         user: JSON.parse(localStorage.getItem("user")) || ""
     }
+    const initCommentFormState = {text: ""}
+
     const [userState, setUserState ] = useState(initUserState)
     const [meals, setMeals] = useState([])
     const [users, setUsers] = useState([])
     const [mealFormState, setMealFormState] = useState(initMealFormState)
     const [editFormState, setEditFormState] = useState(initEditFormState)
-    const [commentFormState, setCommentFormState] = useState({text: ""})
+    const [commentFormState, setCommentFormState] = useState(initCommentFormState)
     const [editCommentFormState, setEditCommentFormState] = useState({text: ""})
     const [comments, setComments] = useState([])
 
@@ -83,7 +85,11 @@ function UserContextProvider(props) {
         console.log(editFormState, mealId) 
         e.preventDefault()
         userAxios.put(`/api/meals/${mealId}`, {...editFormState, userId: userState.user._id })
-        .then(res => getMeals())
+        .then(res =>
+            {
+               
+                setMealFormState(initMealFormState) 
+            return getMeals()})
         .catch(err => console.log(err))
 
 
@@ -92,7 +98,11 @@ function UserContextProvider(props) {
         e.preventDefault()
         console.log("post ran")
         userAxios.post(`/api/meals/`, newMeal)
-        .then(res => getMeals())
+        .then(res =>
+            {
+               
+                setMealFormState(initMealFormState) 
+            return getMeals()})
         .catch(err => console.log(err))
     }
 
@@ -105,7 +115,9 @@ function UserContextProvider(props) {
     const addComment = (e, mealId) => {
         e.preventDefault()
         userAxios.post("/api/comments/", {...commentFormState, mealId: mealId, userId: userState.user._id})
-        .then(res => getComments())
+        .then(res => {
+            setCommentFormState(initCommentFormState)
+            return getComments()})
         .catch(err => console.log(err))
     }
 
@@ -118,7 +130,9 @@ function UserContextProvider(props) {
     const  editComment = (e, commentId, mealId) =>{  
         e.preventDefault()
         userAxios.put(`/api/comments/${commentId}`, {...editCommentFormState, mealId: mealId, userId: userState.user._id })
-        .then(res => getComments())
+        .then(res => {
+            setCommentFormState(initCommentFormState)
+            return getComments()})
         .catch(err => console.log(err))
 
 

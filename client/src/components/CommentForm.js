@@ -12,7 +12,7 @@ export default function CommentForm(props) {
         <form 
         onSubmit=
         {(e) => {
-            addComment(e, props.issueId)
+            addComment(e, props.mealId)
             props.setHideCommentForm(prevState => !prevState)
             }}>
                 

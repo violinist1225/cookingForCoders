@@ -1,21 +1,22 @@
 import React, {useContext, useEffect, useState} from "react"
 import {UserContext} from "../context/UserContext.js"
-export default function Comment({text, _id, issueId, userId}){
+export default function Comment({text, _id, meal, mealId, userId}){
    
-    const {deleteComment, editCommentFormState, setEditCommentFormState, editCommentHandleChange, editComment, userState } = useContext(UserContext)
+    const {deleteComment, editCommentFormState, setEditCommentFormState, editCommentHandleChange, editComment, userState, users } = useContext(UserContext)
     const [editIsClicked, setEditIsClicked] = useState(true)
+    const user = users.find(user => user._id === userId).username
 
     
     
     useEffect( () => setEditCommentFormState({text: text}),[])
     return (
         <div>
-            {text}
+            @{user} said "{text}"
             {!editIsClicked? 
 
 
             <form onSubmit={(e) => {
-                editComment(e, _id, issueId)
+                editComment(e, _id, mealId)
                 setEditIsClicked(prev => !prev)
                 //toggle setEdit.. above to make form disappear after edits are submitted 
             }}>

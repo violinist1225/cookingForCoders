@@ -7,7 +7,7 @@ import "../styles/editMealForm.css"
 export default function EditMealForm(props) {
   const {editMealHandleChange, editFormState, editMeal, setEditFormState} = useContext(UserContext)
     console.log(props)
-    useEffect(() => setEditFormState({title: props.meal && props.meal.title, description: props.meal && props.meal.description, imageUrl: props.meal && props.meal.imageUrl }), [])
+    useEffect(() => setEditFormState({title: props.meal && props.meal.title, description: props.meal && props.meal.description, imageUrl: props.meal && props.meal.imageUrl, timeToPrepareInMinutes: props.meal && props.meal.timeToPrepareInMinutes, timeToCookInMinutes: props.meal && props.meal.timeToCookInMinutes, durationOfMealPerCoderInDays: props.meal && props.meal.durationOfMealPerCoderInDays   }), [])
     return (
         <React.Fragment>
   <form  onSubmit=

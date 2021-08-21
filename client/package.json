@@ -28,7 +28,6 @@
   "browserslist": {
     "production": [
       ">0.2%",
-      "not dead",
       "not op_mini all"
     ],
     "development": [
@@ -38,4 +37,9 @@
     ]
   },
   "proxy": "http://localhost:9000/"
+,
+"build": "cd client && npm run build" ,
+"install-client" : "cd client && npm install",
+"heroku-postbuild": "  npm run install-client && npm run build",
+"start": "node server.js"
 }

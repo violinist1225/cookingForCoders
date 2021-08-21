@@ -41,6 +41,7 @@ commentRouter.delete("/:commentId", (req, res, next) => {
   )
 })
 
+
 // Update comment
 commentRouter.put("/:commentId", (req, res, next) => {
   console.log(req.body)

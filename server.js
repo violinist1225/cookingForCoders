@@ -1,4 +1,5 @@
 const express = require('express')
+const PORT = process.env.PORT || 9000
 const app = express()
 require('dotenv').config()
 const morgan = require('morgan')
@@ -11,7 +12,6 @@ app.use(express.json())
 
 mongoose.connect(
   process.env.MONGODB_URL,
-    
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -27,6 +27,8 @@ mongoose.connect(
   app.use('/api/users', require('./routes/userRouter.js'))
   app.use('/api/comments', require('./routes/commentRouter.js'))
 
+ 
+
   app.use((err, req, res, next) => {
     console.log(err)
     if(err.name === "UnauthorizedError"){
@@ -34,6 +36,16 @@ mongoose.connect(
     }
     return res.send({errMsg: err.message})
   })
+
+  // if (process.env.NODE_ENV === 'production' ) { app.use(express.static('client/build)) }
+
+  app.use(express.static(path.join(__dirname, "client", "build")))
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join, (__dirname, "client", "build", "index.html"))
+})
+
+
   app.listen(9000, () => {
     console.log(`Server is running on local port 9000`)
   })

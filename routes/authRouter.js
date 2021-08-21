@@ -35,7 +35,7 @@ authRouter.post("/signup", (req, res, next) => {
     })
 });
 authRouter.post("/login", (req, res, next) => {
-    //User.find((err, thing) => console.log(thing))
+
     User.findOne(
         {username: req.body.username.toLowerCase()},
         (err, user) => {

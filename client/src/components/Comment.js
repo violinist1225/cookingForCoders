@@ -2,13 +2,22 @@ import React, {useContext, useEffect, useState} from "react"
 import {UserContext} from "../context/UserContext.js"
 export default function Comment({text, _id, meal, mealId, userId}){
    
-    const {deleteComment, editCommentFormState, setEditCommentFormState, editCommentHandleChange, editComment, userState, users } = useContext(UserContext)
+    const {deleteComment, editCommentFormState, setEditCommentFormState, getMeals, getUsers, getComments, editCommentHandleChange, editComment, userState, users } = useContext(UserContext)
     const [editIsClicked, setEditIsClicked] = useState(true)
     const user = users.find(user => user._id === userId).username
 
     
     
     useEffect( () => setEditCommentFormState({text: text}),[])
+    useEffect(() => {
+        getMeals()
+        getUsers()
+        getComments()
+
+        return
+   }, [])
+
+
     return (
         <div>
             @{user} said "{text}"

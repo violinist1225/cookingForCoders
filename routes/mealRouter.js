@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const mealRouter = express.Router();
 const User = require("../models/user");
 const Meal = require("../models/meal");
@@ -6,6 +7,7 @@ const { update } = require("../models/user");
 
 // Get All Meals
 mealRouter.get("/", (req, res, next) => {
+  //http://localhost:9000/api/meals/
   Meal.find((err, meals) => {
     if(err){
       res.status(500)
@@ -15,8 +17,11 @@ mealRouter.get("/", (req, res, next) => {
   })
 })
 
+
+
 // Get meals by user id
 mealRouter.get("/user", (req, res, next) => {
+        //http://localhost:9000/api/meals/user
  Meal.find({ user: req.user._id }, (err,meals) => {
     if(err){
       res.status(500)
@@ -28,6 +33,7 @@ mealRouter.get("/user", (req, res, next) => {
 
 // Add new Meals 
 mealRouter.post("/", (req, res, next) => {
+      //http://localhost:9000/api/meals/
   req.body.userId = req.user._id
   const newMeal = new Meal(req.body)
   newMeal.save((err, savedMeal) => {
@@ -39,8 +45,11 @@ mealRouter.post("/", (req, res, next) => {
   })
 })
 
+
+
 // Delete Meal
 mealRouter.delete("/:mealId", (req, res, next) => {
+    //http://localhost:9000/api/meals/234729837482
   Meal.findOneAndDelete(
     { _id: req.params.mealId, userId: req.user._id },
     (err, deletedMeal) => {
@@ -53,11 +62,14 @@ mealRouter.delete("/:mealId", (req, res, next) => {
   )
 })
 
+
 // Update Meal
 mealRouter.put("/:mealId", (req, res, next) => {
+    //http://localhost:9000/api/meals/234729837482
   console.log(req.body)
+  console.log(req.params.mealId)
   Meal.findOneAndUpdate(
-    { _id: req.params.mealId, userId: req.body.mealId },
+    { _id: req.params.mealId },
     req.body,
     { new: true },
     (err, updatedMeal) => {
@@ -73,6 +85,7 @@ mealRouter.put("/:mealId", (req, res, next) => {
 
 //Likes
 mealRouter.put("/likes/:mealId", (req, res, next) => {
+  //http://localhost:9000/api/meals/likes/234729837482
  console.log(req.user._id)
   Meal.findOneAndUpdate(
     { _id: req.params.mealId, userId: req.body.userId },
@@ -87,6 +100,7 @@ mealRouter.put("/likes/:mealId", (req, res, next) => {
       !updatedMeal.likers.includes(req.user._id) && !updatedMeal.dislikers.includes(req.user._id)?
       Meal.findOneAndUpdate(
         { _id: req.params.mealId, userId: req.body.userId },
+        //$inc increments likesm $push pushes into likers
         {$inc: {likes: 1}, $push: {likers: req.user._id }  }, //look up $inc mongo method, look up populate
         { new: true },
         (err, updatedMeal) => {
@@ -107,7 +121,7 @@ mealRouter.put("/likes/:mealId", (req, res, next) => {
 
 //Dislike
 mealRouter.put("/dislikes/:mealId", (req, res, next) => {
- 
+   //http://localhost:9000/api/meals/dislikes/234729837482
   Meal.findOneAndUpdate(
     { _id: req.params.mealId, userId: req.body.userId },
      //look up $inc mongo method

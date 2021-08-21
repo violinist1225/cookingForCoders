@@ -5,30 +5,30 @@
   "engines": {
     "node": "10.19.0"
   },
-
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build" 
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@heroku/buildpack-registry": "^1.0.1",
+    "async-file": "^2.0.2",
     "bcrypt": "^5.0.1",
+    "cli-ux": "^4.9.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
+    "got": "^9.6.0",
     "heroku": "^7.57.0",
     "jsonwebtoken": "^8.5.1",
     "kill-port": "^1.6.1",
     "mongoose": "^5.12.14",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "phoenix": "^1.5.11"
   }
-
-
 }
-
-

@@ -14,8 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@heroku/buildpack-registry": "^1.0.1",
+  "dependencies": { 
     "async-file": "^2.0.2",
     "bcrypt": "^5.0.1",
     "cli-ux": "^4.9.3",

@@ -37,9 +37,6 @@ mongoose.connect(
     }
     return res.send({errMsg: err.message})
   })
-
-  // if (process.env.NODE_ENV === 'production' ) { app.use(express.static('client/build)) }
-
 // Accessing the path module
 const path = require("path");
 

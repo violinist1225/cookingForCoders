@@ -1,7 +1,7 @@
 const express = require('express')
+require('dotenv').config()
 const PORT = process.env.PORT || 9000
 const app = express()
-require('dotenv').config()
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const expressJwt = require('express-jwt')
@@ -41,10 +41,19 @@ mongoose.connect(
   // if (process.env.NODE_ENV === 'production' ) { app.use(express.static('client/build)) }
 
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join, (__dirname, "client", "build", "index.html"))
-})
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join, (__dirname, "client", "build", "index.html"))
+// })
 
+// Accessing the path module
+const path = require("path");
+
+// Step 1:
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+// Step 2:
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
   app.listen(PORT, () => {
     console.log(`Server is running on local port 9000`)
